@@ -61,7 +61,8 @@ header {
   float: right;
 }
 
-#nav li a {
+#nav li button {
+  all: unset;
   text-align: center;
   padding: 20px 16px;
   text-decoration: none;
