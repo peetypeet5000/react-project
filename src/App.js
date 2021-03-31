@@ -1,12 +1,54 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import './App.css';
+import projectData from './projects.json'
+
+class Projects extends React.Component {
+
+	createCards
+
+
+	render() {
+		return (
+			<div class="post">
+				<h2>Project {{number}}: {{projectTitle}}</h2>
+
+				<div class="post-content">
+					<img class="post-image" src="{{projectImage}}" alt="{{projectImageAlt}}">
+					<p class="post-text">
+						{{projectDescription}}
+						{{#if extraContent}}
+							<br><br>Play the game <a href={{extraContent}}>here.</a>
+						{{/if}}
+						<br><br>
+						See the GitHub repo for this project <a href="{{projectGithub}}">here.</a>
+					</p>
+				</div>
+			</div>
+		);
+	}
+}
+
+
 
 class Links extends React.Component {
 	render() {
 		return (
-			<p>hello</p>
-		)
+			<div id="links" class="post">
+       			<div class="post-content">
+            		<h2>Links:</h2>
+
+					<div class="post-element">
+						<div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="horizontal" data-theme="dark" data-vanity="peter-lamontagne-5000"><a class="LI-simple-link" href='https://www.linkedin.com/in/peter-lamontagne-5000?trk=profile-badge'>LinkedIn</a></div>
+					</div>
+					<div class="post-element">
+						
+						<div class="github-card" data-user="peetypeet5000" data-theme="medium" data-width="300a"></div>
+						<script src="https://lab.lepture.com/github-cards/widget.js"></script>
+					</div>
+				</div>
+			</div>
+		);
 	}
 }
 
@@ -96,9 +138,9 @@ class Navigation extends React.Component {
 					<div id="nav">
 						<img src="logo.png" className="logo" alt="Logo" />
 						<ul>
-							<li><button onClick={(e) => this.handleClick(1, e)}>Projects</button></li>
-							<li><button onClick={(e) => this.handleClick(2, e)}>Articles</button></li>
-							<li><button onClick={(e) => this.handleClick(3, e)}>About</button></li>
+							<li><button onClick={(e) => this.handleClick(1, e)}>Resume</button></li>
+							<li><button onClick={(e) => this.handleClick(2, e)}>Links</button></li>
+							<li><button onClick={(e) => this.handleClick(3, e)}>Projects</button></li>
 						</ul>
 					</div>
 				</header>
@@ -125,8 +167,9 @@ class App extends React.Component {
 		return (
 			<div>
 				<Navigation handler={this.handleClick} />
-				{this.state.active == 1 ? <Resume /> : false}
-				{this.state.active == 2 ? <Links /> : false}
+				{this.state.active == 1 ? <Resume /> : null}
+				{this.state.active == 2 ? <Links /> : null}
+				{this.state.active == 3 ? <Projects /> : null}
 			</div>
 		);
 	}
